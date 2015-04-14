@@ -1,10 +1,12 @@
 #include "mainwindow.h"
+#include "gui/gameoflife/widgetgameoflife.h"
+
+/*============================================*/
+//  CONSTRUCTOR / DESTRUCTOR
+/*============================================*/
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-}
-
-MainWindow::~MainWindow()
-{
+    setCentralWidget(new WidgetGameOfLife(this));
 }
