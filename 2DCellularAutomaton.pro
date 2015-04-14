@@ -15,10 +15,20 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     data/cellularautomaton.cpp \
-    data/gameoflife/conwaygol.cpp
+    data/gameoflife/conwaygol.cpp \
+    gui/gameoflife/widgetgameoflife.cpp \
+    gui/widgetdrawgrid.cpp
 
 HEADERS  += mainwindow.h \
     data/cellularautomaton.h \
-    data/gameoflife/conwaygol.h
+    data/gameoflife/conwaygol.h \
+    gui/gameoflife/widgetgameoflife.h \
+    gui/widgetdrawgrid.h
 
 FORMS    +=
+
+RESOURCES +=
+
+OTHER_FILES += \
+    resources/down-button.svg \
+    resources/up-button.svg

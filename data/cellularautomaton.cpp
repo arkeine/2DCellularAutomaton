@@ -1,18 +1,73 @@
 #include "cellularautomaton.h"
 #include "ObjectToreArray/objecttorearray.cpp"
 
-CellularAutomaton::CellularAutomaton(int width, int height)
+/*============================================*/
+//  CONSTRUCTOR / DESTRUCTOR
+/*============================================*/
+
+CellularAutomaton::CellularAutomaton(int width, int height, int initialState)
 {
     cellsCurrent = new ObjectToreArray<int>(width, height);
     cellsNext = new ObjectToreArray<int>(width, height);
 
-    for (int i = 0; i < width; ++i)
+    for (int x = 0; x < width; ++x)
     {
-        for (int j = 0; j < height; ++j)
+        for (int y = 0; y < height; ++y)
         {
-            cellsCurrent->set(0, i, j);
+            cellsCurrent->set(initialState, x, y);
+            cellsNext->set(initialState, x, y);
         }
     }
+}
+
+CellularAutomaton::CellularAutomaton(const CellularAutomaton &s)
+{
+    cellsCurrent = new ObjectToreArray<int>(s.width(),
+                                            s.height());
+    cellsNext = new ObjectToreArray<int>(s.width(),
+                                         s.height());
+
+    for (int x = 0; x < width(); ++x)
+    {
+        for (int y = 0; y < height(); ++y)
+        {
+            int cellValue = s.get(x, y);
+            cellsCurrent->set(cellValue, x, y);
+            cellsNext->set(cellValue, x, y);
+        }
+    }
+}
+
+CellularAutomaton &CellularAutomaton::operator =(CellularAutomaton &s)
+{
+    /*
+     * Use copy construtor and swap is not possible here,
+     * because this class is abstract. So, do the affectation
+     * manually with small performance saver, if big same
+     * array. Usefull ? I havent measure ;-)
+     */
+
+    if(s.height() != height() || s.width() != width())
+    {
+        delete cellsCurrent;
+        delete cellsNext;
+        cellsCurrent = new ObjectToreArray<int>(s.width(),
+                                                s.height());
+        cellsNext = new ObjectToreArray<int>(s.width(),
+                                             s.height());
+    }
+
+    for (int x = 0; x < cellsCurrent->width(); ++x)
+    {
+        for (int y = 0; y < cellsCurrent->height(); ++y)
+        {
+            int cellValue = s.get(x, y);
+            cellsCurrent->set(cellValue, x, y);
+            cellsNext->set(cellValue, x, y);
+        }
+    }
+
+    return *this;
 }
 
 CellularAutomaton::~CellularAutomaton()
@@ -21,10 +76,14 @@ CellularAutomaton::~CellularAutomaton()
     delete cellsNext;
 }
 
+/*============================================*/
+//  ASSESSOR / MUTATOR
+/*============================================*/
+
 void CellularAutomaton::next()
 {
     //Apply algorithm
-    next(*cellsCurrent, *cellsNext);
+    calculateNext(*cellsCurrent, *cellsNext);
 
     //Swap the array
     ObjectToreArray<int> *tmp = cellsCurrent;
@@ -32,7 +91,22 @@ void CellularAutomaton::next()
     cellsNext = tmp;
 }
 
-const ObjectToreArray<int> &CellularAutomaton::cells() const
+int CellularAutomaton::get(int x, int y) const
 {
-    return *cellsCurrent;
+    return cellsCurrent->get(x, y);
+}
+
+void CellularAutomaton::set(int cell, int x, int y)
+{
+    return cellsCurrent->set(cell, x, y);
+}
+
+int CellularAutomaton::width() const
+{
+    return cellsCurrent->width();
+}
+
+int CellularAutomaton::height() const
+{
+    return cellsCurrent->height();
 }

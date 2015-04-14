@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/down-button-black.svg</file>
+        <file>resources/down-button-blue.svg</file>
+        <file>resources/down-button-white.svg</file>
+        <file>resources/stylesheet.css</file>
+        <file>resources/up-button-black.svg</file>
+        <file>resources/up-button-blue.svg</file>
+        <file>resources/up-button-white.svg</file>
+        <file>resources/down-button-darkgray.svg</file>
+        <file>resources/up-button-darkgray.svg</file>
+    </qresource>
+</RCC>

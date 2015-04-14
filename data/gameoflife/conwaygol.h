@@ -1,7 +1,7 @@
 #ifndef CONWAYGOL_H
 #define CONWAYGOL_H
 
-#include "../cellularautomaton.h"
+#include "data/cellularautomaton.h"
 
 class ConwayGOL : public CellularAutomaton
 {
@@ -15,7 +15,7 @@ public:
     };
 
 protected:
-    virtual void next(const ObjectToreArray<int> &current, ObjectToreArray<int> &next) = 0;
+    virtual void calculateNext(const ObjectToreArray<int> &current, ObjectToreArray<int> &next);
 
 private:
     int surroundingAlive(const ObjectToreArray<int> &cells, int x, int y) const;
