@@ -17,15 +17,22 @@ SOURCES += main.cpp\
     data/cellularautomaton.cpp \
     data/gameoflife/conwaygol.cpp \
     gui/gameoflife/widgetgameoflife.cpp \
-    gui/widgetdrawgrid.cpp
+    gui/widgetdrawgrid.cpp \
+    gui/widgetsquarecells.cpp \
+    data/rock-paper-scissors/rockpaperscisors.cpp \
+    gui/rock-paper-scissors/widgetrockpaperscisors.cpp
 
 HEADERS  += mainwindow.h \
     data/cellularautomaton.h \
     data/gameoflife/conwaygol.h \
     gui/gameoflife/widgetgameoflife.h \
-    gui/widgetdrawgrid.h
+    gui/widgetdrawgrid.h \
+    gui/widgetsquarecells.h \
+    data/rock-paper-scissors/rockpaperscisors.h \
+    gui/rock-paper-scissors/widgetrockpaperscisors.h
 
-FORMS    +=
+FORMS    += \
+    form.ui
 
 RESOURCES +=
 

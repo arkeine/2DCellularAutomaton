@@ -18,8 +18,8 @@ public:
     void mouseMoveEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
 
-    void addPen(int value, QPen &pen);
-    void addBrush(int value, QBrush &brush);
+    void addPen(int value, const QPen &pen);
+    void addBrush(int value, const QBrush &brush);
     void setAutomaton(CellularAutomaton &automaton);
 
 signals:

@@ -77,12 +77,12 @@ void WidgetDrawGrid::mouseReleaseEvent(QMouseEvent *e)
 //  ASSESSOR / MUTATOR
 /*============================================*/
 
-void WidgetDrawGrid::addPen(int value, QPen &pen)
+void WidgetDrawGrid::addPen(int value, const QPen &pen)
 {
     this->pen.insert(value, pen);
 }
 
-void WidgetDrawGrid::addBrush(int value, QBrush &brush)
+void WidgetDrawGrid::addBrush(int value, const QBrush &brush)
 {
     this->brush.insert(value, brush);
 }
