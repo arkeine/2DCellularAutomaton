@@ -3,6 +3,7 @@ Compilation of several famous cellular automatons
 
 ## Automatons
 - Game of life
+- Rock paper scisors
 
 ## Limitations
 The program is limited to :
