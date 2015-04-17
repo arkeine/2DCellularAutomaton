@@ -5,6 +5,7 @@
 
 class WidgetRockPaperScisors : public WidgetSquareCells
 {
+    Q_OBJECT
 public:
     explicit WidgetRockPaperScisors(QWidget *parent = 0);
 

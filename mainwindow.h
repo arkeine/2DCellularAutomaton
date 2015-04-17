@@ -13,8 +13,18 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
-private:
+private slots:
+    void on_newConwayGOL_triggered();
+    void on_newRockPaperScisors_triggered();
 
+private:
+    QAction *newConwayGOL;
+    QAction *newRockPaperScisors;
+
+    void instantiation();
+    void geometry();
+    void control();
+    void apparence();
 };
 
 #endif // MAINWINDOW_H

@@ -5,9 +5,7 @@
 
 class WidgetDrawGrid;
 class CellularAutomaton;
-class QComboBox;
-class QPushButton;
-class QSpinBox;
+class WidgetGridControler;
 
 class WidgetSquareCells : public QWidget
 {
@@ -20,10 +18,9 @@ public:
     void addBrush(const QBrush &brush, int state);
 
 public slots:
-    void on_buttonGenerate_clicked();
-    void on_widgetDrawing_actionOnCell(int x, int y);
-    void on_spinboxGridWidth_valueChanged(int);
-    void on_spinboxGridHeight_valueChanged(int);
+    void on_widgetControler_nextGenerations(int nbGeneration);
+    void on_widgetControler_dimensionChange();
+    void on_widgetDrawing_actionOnCell(int x,int y);
 
 protected:
     virtual CellularAutomaton *newAutomaton(int width, int height) = 0;
@@ -32,11 +29,7 @@ protected:
 private:
     CellularAutomaton *automaton;
     WidgetDrawGrid *widgetDrawing;
-    QPushButton *buttonGenerate;
-    QComboBox *comboboxStates;
-    QSpinBox *spinboxGridWidth;
-    QSpinBox *spinboxGridHeight;
-    QSpinBox *spinboxGeneration;
+    WidgetGridControler *widgetGridControler;
 
     void instantiation();
     void geometry();

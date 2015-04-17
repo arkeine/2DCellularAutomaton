@@ -19,6 +19,7 @@ SOURCES += main.cpp\
     gui/gameoflife/widgetgameoflife.cpp \
     gui/widgetdrawgrid.cpp \
     gui/widgetsquarecells.cpp \
+    gui/widgetgridcontroler.cpp \
     data/rock-paper-scissors/rockpaperscisors.cpp \
     gui/rock-paper-scissors/widgetrockpaperscisors.cpp
 
@@ -28,11 +29,11 @@ HEADERS  += mainwindow.h \
     gui/gameoflife/widgetgameoflife.h \
     gui/widgetdrawgrid.h \
     gui/widgetsquarecells.h \
+    gui/widgetgridcontroler.h \
     data/rock-paper-scissors/rockpaperscisors.h \
     gui/rock-paper-scissors/widgetrockpaperscisors.h
 
-FORMS    += \
-    form.ui
+FORMS    +=
 
 RESOURCES +=
 
