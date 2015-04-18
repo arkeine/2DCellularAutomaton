@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     gui/widgetsquarecells.cpp \
     gui/widgetgridcontroler.cpp \
     data/rock-paper-scissors/rockpaperscisors.cpp \
-    gui/rock-paper-scissors/widgetrockpaperscisors.cpp
+    gui/rock-paper-scissors/widgetrockpaperscisors.cpp \
+    gui/widgetwellcome.cpp
 
 HEADERS  += mainwindow.h \
     data/cellularautomaton.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     gui/widgetsquarecells.h \
     gui/widgetgridcontroler.h \
     data/rock-paper-scissors/rockpaperscisors.h \
-    gui/rock-paper-scissors/widgetrockpaperscisors.h
+    gui/rock-paper-scissors/widgetrockpaperscisors.h \
+    gui/widgetwellcome.h
 
 FORMS    +=
 
