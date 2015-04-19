@@ -6,6 +6,13 @@
 #include <assert.h>
 
 /*============================================*/
+//  CONSTANTS
+/*============================================*/
+
+int WidgetDrawGrid::gridShowingLimit = 15;
+
+
+/*============================================*/
 //  CONSTRUCTOR / DESTRUCTOR
 /*============================================*/
 
@@ -28,6 +35,7 @@ void WidgetDrawGrid::paintEvent(QPaintEvent *e)
 
     double stepX = (double)width()/automaton->width();
     double stepY = (double)height()/automaton->height();
+    bool borderEnable = stepX > gridShowingLimit && stepY > gridShowingLimit;
 
     QRectF r(0, 0, stepX, stepY);
 
@@ -37,7 +45,17 @@ void WidgetDrawGrid::paintEvent(QPaintEvent *e)
         {
             g.save();
 
-            g.setPen(pen.value(automaton->get(x,y)));
+            //if the step is too small, hide border
+            if(borderEnable)
+            {
+                g.setPen(pen.value(automaton->get(x,y)));
+            }
+            else
+            {
+                QPen p;
+                p.setColor(brush.value(automaton->get(x,y)).color());
+                g.setPen(p);
+            }
             g.setBrush(brush.value(automaton->get(x,y)));
 
             g.translate(x*stepX, y*stepY);

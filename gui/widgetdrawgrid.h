@@ -33,6 +33,8 @@ private:
 
     void calculateCoord(int &cellX, int &cellY, int mouseX, int mouseY) const;
 
+    static int gridShowingLimit;
+
 };
 
 #endif // WIDGETDRAWGRID_H
