@@ -1,5 +1,5 @@
 #include "widgetgameoflife.h"
-#include "data/gameoflife/conwaygol.h"
+#include "algo/gameoflife/conwaygol.h"
 
 #include <QPen>
 #include <QBrush>

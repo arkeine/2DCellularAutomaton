@@ -1,12 +1,12 @@
 #include "rockpaperscisors.h"
-#include "ObjectToreArray/objecttorearray.cpp"
+#include "data/toriccellulararray.h"
 
 /*============================================*/
 //  CONSTRUCTOR / DESTRUCTOR
 /*============================================*/
 
 RockPaperScisors::RockPaperScisors(int width, int height):
-    CellularAutomaton(width, height, PAPER)
+    CellularAutomaton(width, height, PAPER, ToricCellularArray(width, height))
 {
     //nothig
 }
@@ -20,8 +20,8 @@ RockPaperScisors::~RockPaperScisors()
 //  OVERRIDE
 /*============================================*/
 
-void RockPaperScisors::calculateNext(const ObjectToreArray<int> &current,
-                                     ObjectToreArray<int> &next)
+void RockPaperScisors::calculateNext(const CellularArray &current,
+                                     CellularArray &calculateNext)
 {
     for (int x = 0; x < current.width(); ++x)
     {
@@ -30,11 +30,11 @@ void RockPaperScisors::calculateNext(const ObjectToreArray<int> &current,
             STATE harmState = getHarmState((STATE)current.get(x,y));
             if(atLeastOne(current, x, y, harmState))
             {
-                next.set(harmState, x, y);
+                calculateNext.set(harmState, x, y);
             }
             else
             {
-                next.set(current.get(x, y), x, y);
+                calculateNext.set(current.get(x, y), x, y);
             }
         }
     }
@@ -48,7 +48,7 @@ void RockPaperScisors::calculateNext(const ObjectToreArray<int> &current,
 /**
  * @return True if at least one of the state s is present in the 8 surrounding cells
  */
-bool RockPaperScisors::atLeastOne(const ObjectToreArray<int> &cells,
+bool RockPaperScisors::atLeastOne(const CellularArray &cells,
                                       int x, int y, RockPaperScisors::STATE s) const
 {
     return cells.get(-1,-1, x, y) == s

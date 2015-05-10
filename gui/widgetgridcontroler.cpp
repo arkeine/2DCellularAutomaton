@@ -1,6 +1,5 @@
 #include "widgetgridcontroler.h"
 #include "gui/widgetdrawgrid.h"
-#include "data/gameoflife/conwaygol.h"
 
 #include <QtWidgets>
 

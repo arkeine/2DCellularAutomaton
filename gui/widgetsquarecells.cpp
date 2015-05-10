@@ -1,7 +1,8 @@
 #include "widgetsquarecells.h"
 #include "gui/widgetdrawgrid.h"
 #include "gui/widgetgridcontroler.h"
-#include "data/gameoflife/conwaygol.h"
+#include "data/cellulararray.h"
+#include "algo/cellularautomaton.h"
 
 #include <QtWidgets>
 
@@ -57,8 +58,10 @@ void WidgetSquareCells::on_widgetControler_dimensionChange()
 
 void WidgetSquareCells::on_widgetDrawing_actionOnCell(int x, int y)
 {
+    CellularArray &array = automaton->getCellularArray();
+
     int stateValue = widgetGridControler->getDrawingState();
-    automaton->set(stateValue, x, y);
+    array.set(stateValue, x, y);
     widgetDrawing->repaint();
 }
 

@@ -1,7 +1,7 @@
 #ifndef ROCKPAPERSCISORS_H
 #define ROCKPAPERSCISORS_H
 
-#include "data/cellularautomaton.h"
+#include "algo/cellularautomaton.h"
 
 class RockPaperScisors : public CellularAutomaton
 {
@@ -16,10 +16,10 @@ public:
     };
 
 protected:
-    virtual void calculateNext(const ObjectToreArray<int> &current, ObjectToreArray<int> &next);
+    virtual void calculateNext(const CellularArray &current, CellularArray &calculateNext);
 
 private:
-    bool atLeastOne(const ObjectToreArray<int> &cells, int x, int y, STATE s) const;
+    bool atLeastOne(const CellularArray &cells, int x, int y, STATE s) const;
     STATE getHarmState(STATE s) const;
 
 };

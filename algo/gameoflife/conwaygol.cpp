@@ -1,12 +1,12 @@
 #include "conwaygol.h"
-#include "ObjectToreArray/objecttorearray.cpp"
+#include "data/toriccellulararray.h"
 
 /*============================================*/
 //  CONSTRUCTOR / DESTRUCTOR
 /*============================================*/
 
 ConwayGOL::ConwayGOL(int width, int height) :
-    CellularAutomaton(width, height, DEAD)
+    CellularAutomaton(width, height, DEAD, ToricCellularArray(width, height))
 {
     //nothig
 }
@@ -20,7 +20,7 @@ ConwayGOL::~ConwayGOL()
 //  OVERRIDE
 /*============================================*/
 
-void ConwayGOL::calculateNext(const ObjectToreArray<int> &current, ObjectToreArray<int> &next)
+void ConwayGOL::calculateNext(const CellularArray &current, CellularArray &calculateNext)
 {
     for (int x = 0; x < current.width(); ++x)
     {
@@ -30,15 +30,15 @@ void ConwayGOL::calculateNext(const ObjectToreArray<int> &current, ObjectToreArr
 
             if(count < 2 || count > 3)
             {
-                next.set(DEAD,x,y);
+                calculateNext.set(DEAD,x,y);
             }
             else if(count == 3)
             {
-                next.set(ALIVE,x,y);
+                calculateNext.set(ALIVE,x,y);
             }
             else
             {
-                next.set(current.get(x,y),x,y);
+                calculateNext.set(current.get(x,y),x,y);
             }
         }
     }
@@ -48,7 +48,7 @@ void ConwayGOL::calculateNext(const ObjectToreArray<int> &current, ObjectToreArr
 //  PRIVATE
 /*============================================*/
 
-int ConwayGOL::surroundingAlive(const ObjectToreArray<int> &cells, int x, int y) const
+int ConwayGOL::surroundingAlive(const CellularArray &cells, int x, int y) const
 {
     int count = 0;
 

@@ -1,5 +1,5 @@
 #include "widgetrockpaperscisors.h"
-#include "data/rock-paper-scissors/rockpaperscisors.h"
+#include "algo/rock-paper-scissors/rockpaperscisors.h"
 
 #include <QPen>
 #include <QBrush>

@@ -1,5 +1,6 @@
 #include "widgetdrawgrid.h"
-#include "data/cellularautomaton.h"
+#include "algo/cellularautomaton.h"
+#include "data/cellulararray.h"
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -33,30 +34,32 @@ void WidgetDrawGrid::paintEvent(QPaintEvent *e)
 
     QPainter g(this);
 
-    double stepX = (double)width()/automaton->width();
-    double stepY = (double)height()/automaton->height();
+    CellularArray &array = automaton->getCellularArray();
+
+    double stepX = (double)width()/array.width();
+    double stepY = (double)height()/array.height();
     bool borderEnable = stepX > gridShowingLimit && stepY > gridShowingLimit;
 
     QRectF r(0, 0, stepX, stepY);
 
-    for (int x = 0; x < automaton->width(); ++x)
+    for (int x = 0; x < array.width(); ++x)
     {
-        for (int y = 0; y < automaton->height(); ++y)
+        for (int y = 0; y < array.height(); ++y)
         {
             g.save();
 
             //if the step is too small, hide border
             if(borderEnable)
             {
-                g.setPen(pen.value(automaton->get(x,y)));
+                g.setPen(pen.value(array.get(x,y)));
             }
             else
             {
                 QPen p;
-                p.setColor(brush.value(automaton->get(x,y)).color());
+                p.setColor(brush.value(array.get(x,y)).color());
                 g.setPen(p);
             }
-            g.setBrush(brush.value(automaton->get(x,y)));
+            g.setBrush(brush.value(array.get(x,y)));
 
             g.translate(x*stepX, y*stepY);
             g.drawRect(r);
@@ -121,11 +124,13 @@ void WidgetDrawGrid::calculateCoord(int &cellX, int &cellY, int mouseX, int mous
     double ratioX = (double)mouseX/width();
     double ratioY = (double)mouseY/height();
 
-    cellX = automaton->width() * ratioX;
-    cellY = automaton->height() * ratioY;
+    CellularArray &array = automaton->getCellularArray();
+
+    cellX = array.width() * ratioX;
+    cellY = array.height() * ratioY;
 
     cellX = cellX < 0 ? 0 : cellX;
-    cellX = cellX >= automaton->width() ? automaton->width()-1 : cellX;
+    cellX = cellX >= array.width() ? array.width()-1 : cellX;
     cellY = cellY < 0 ? 0 : cellY;
-    cellY = cellY >= automaton->height() ? automaton->height()-1 : cellY;
+    cellY = cellY >= array.height() ? array.height()-1 : cellY;
 }
